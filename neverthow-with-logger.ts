@@ -86,23 +86,22 @@ export function logWithLevel(
   message: string,
   context?: Record<string, any>,
 ): void {
-  const logContext = context || {};
-  
+  const logContextStr = JSON.stringify(context, null, 2);
   switch (level) {
     case 'error':
-      logger.error(message, logContext);
+      logger.error(message, logContextStr);
       break;
     case 'warn':
-      logger.warn(message, logContext);
+      logger.warn(message, logContextStr);
       break;
     case 'info':
-      logger.log(message, logContext);
+      logger.log(message, logContextStr);
       break;
     case 'debug':
-      logger.debug(message, logContext);
+      logger.debug(message, logContextStr);
       break;
     default:
-      logger.error(message, logContext);
+      logger.error(message, logContextStr);
   }
 }
 
@@ -140,7 +139,7 @@ export function createError(
   const methodName = getMethodNameFromStack();
   
   const contextStr = context
-    ? ` | Context: ${JSON.stringify(context)}`
+    ? ` | Context: ${JSON.stringify(context, null, 2)}`
     : '';
   
   const fullMessage = `[${serviceName}.${methodName}] ${message}${contextStr}`;
@@ -154,12 +153,12 @@ export function createError(
       method: methodName,
       message,
       context,
-      stack: new Error().stack,
+      stack: JSON.stringify(new Error().stack, null, 2),
     },
   );
 
   // Create error with enhanced message
-  const error = new Error(fullMessage);
+  const error = new Error(message);
   error.stack = new Error().stack; // Preserve stack trace
   
   return error;
@@ -212,7 +211,7 @@ export function errWithLog<T>(
   });
 
   // Enhance error message but preserve original stack
-  const enhancedError = new Error(fullMessage);
+  const enhancedError = new Error(errorMessage);
   if (errorInstance.stack) {
     enhancedError.stack = `Original: ${errorInstance.stack}\n\nAt: ${enhancedError.stack}`;
   }
