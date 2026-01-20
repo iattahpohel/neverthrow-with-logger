@@ -1,0 +1,40 @@
+{
+  "name": "neverthrow-with-logger",
+  "version": "1.0.0",
+  "description": "Enhanced neverthrow with automatic logging and error context detection",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "neverthrow",
+    "logging",
+    "error-handling",
+    "typescript",
+    "nestjs",
+    "result-type"
+  ],
+  "author": "iattahpohel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iattahpohel/neverthrow-with-logger.git"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^10.0.0 || ^11.0.0",
+    "neverthrow": "^6.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^11.0.1",
+    "@types/node": "^20.0.0",
+    "neverthrow": "^6.0.0",
+    "typescript": "^5.0.0"
+  }
+}

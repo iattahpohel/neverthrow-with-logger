@@ -1,0 +1,11 @@
+node_modules
+*.ts
+!*.d.ts
+tsconfig.json
+*.log
+.DS_Store
+dist/**/*.js.map
+*.test.ts
+*.spec.ts
+.env
+.env.local
